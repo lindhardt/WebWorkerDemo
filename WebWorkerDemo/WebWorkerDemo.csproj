@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="index.html" />
+    <Content Include="scripts\workers\myWebWorker.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

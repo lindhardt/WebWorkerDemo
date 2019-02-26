@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        function replyHandler(event) {
+            alert("Reply: " + event.data);
+        }
+
+        function errorHandler(event) {
+            console.log(event.message);
+        }
+
+        var Msg = function (cmd, data) {
+            this.command = cmd;
+            this.data = data;
+        };
+
+        var myWebWorker;
+        if (typeof (Worker) !== "undefined") {
+            myWebWorker = new Worker('/scripts/workers/myWebWorker.js');
+            myWebWorker.addEventListener('message', replyHandler, false);
+            myWebWorker.addEventListener('error', errorHandler, false);
+
+            myWebWorker.postMessage(new Msg("DOWORK", "Please fast"));
+            myWebWorker.postMessage(new Msg("DOMOREWORK", "Please faster"));
+            myWebWorker.postMessage(new Msg("FINSH", "NOW!"));
+        }
+    </script>
+</body>
+</html>
